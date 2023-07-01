@@ -1,20 +1,25 @@
 <%- include("header") -%>
 
     <div class="box" id="heading">
-        <h1> <%= listtitle%> </h1>
+        <h1> <%= listTitle %> </h1>
     </div>
    <div class="box">
+    <% newListItems.forEach(function(item){ %>
+        <!-- this action is for deleting the element when have post request -->
+       <form action="/delete" method="post">
+        <div class="item">
+            <input type="checkbox" name="checkbox" value="<%= item._id%>"onchange="this.form.submit()" >
+            
+            <p><%= item.name %> </p>
+        </div>
+        <input type="hidden" name="listName" value="<%= listTitle %>" ></input>
+       </form>
+    <% }) %>
     
-        <% for(var i=0 ; i<newlistitems.length ; i++){ %>
-            <div class="item">
-                <input type="checkbox">
-                <p><%= newlistitems[i]%> </p>
-            </div>
-          
-        <% }; %>
+       <!-- this action is for adding the element when we have post request -->
         <form class="item" action="/" method="post">
             <input type="text" name="newitem" placeholder="new item" autocomplete="off">
-        <button type="submit" name="list" value=<%= listtitle%>>+</button>
+        <button type="submit" name="list" value=<%= listTitle%>>+</button>
         </form>
    
    </div>

@@ -104,6 +104,7 @@ app.post("/", function(req, res){
     });
   }
 });
+// deleting the database 
 app.post("/delete",function(req,res){
   const checkedItemId = req.body.checkbox ;
   const listName= req.body.listName;
